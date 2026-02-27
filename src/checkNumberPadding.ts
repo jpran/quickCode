@@ -41,7 +41,7 @@ const checkInconsistentPaddingWidth = (arr: number[]): number | undefined => {
 }
 
 /**
- * Validates that the inferred padding width P is consistent across the entire dataset.
+ * Validates that the padding width is consistent across the entire dataset.
  */
 const checkConsistentPadding = (arr: string[], paddedLengths: number[]): number => {
     const width = paddedLengths[0];
