@@ -81,7 +81,7 @@ export function checkNumberPadding(intStrs: Iterable<string>): number {
     );
     const paddedLengths = padded.map(s => s.length);
 
-    // To Ensure padding widths do not inconsistent
+    // To Ensure padding widths are not inconsistent
     const inconsistent = checkInconsistentPaddingWidth(paddedLengths);
     if (inconsistent !== undefined)
         return inconsistent;
