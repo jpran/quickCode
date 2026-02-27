@@ -59,7 +59,7 @@ const checkConsistentPadding = (arr: string[], paddedLengths: number[]): number 
  * Decision Order:
  *   1. Empty input → 0
  *   2. No padding observed → 1 or -minLength
- *   3. Conflicting padded widths → -1
+ *   3. Inconsistent padded widths → -1
  *   4. Confirm consistent padding → width
  */
 export function checkNumberPadding(intStrs: Iterable<string>): number {
