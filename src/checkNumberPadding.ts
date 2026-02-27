@@ -2,6 +2,9 @@ const checkPaddingForSingleValue = (str: string): boolean => {
     return str.length > 1 && str.startsWith("0");
 };
 
+/**
+ * Ensures all inputs are valid unsigned integer strings.
+ */
 const validateNumericInput = (arr: string[]): void => {
     for (const s of arr) {
         if (!/^\d+$/.test(s)) {
@@ -10,6 +13,9 @@ const validateNumericInput = (arr: string[]): void => {
     }
 };
 
+/**
+ * Checks whether the dataset contains any zero-padding values.
+ */
 const checkNoPaddedValues = (arr: string[]): number | undefined => {
     const hasLeadingZero = arr.some(
         s => checkPaddingForSingleValue(s)
@@ -24,6 +30,9 @@ const checkNoPaddedValues = (arr: string[]): number | undefined => {
         return -minLength; // inconclusive
 };
 
+/**
+ * Checks all padded values have the same padding width.
+ */
 const checkInconsistentPaddingWidth = (arr: number[]): number | undefined => {
     const uniquePaddedLengths = new Set(arr);
     if (uniquePaddedLengths.size !== 1) {
@@ -31,6 +40,9 @@ const checkInconsistentPaddingWidth = (arr: number[]): number | undefined => {
     }
 }
 
+/**
+ * Validates that the inferred padding width P is consistent across the entire dataset.
+ */
 const checkConsistentPadding = (arr: string[], paddedLengths: number[]): number => {
     const width = paddedLengths[0];
     for (const str of arr) {
@@ -41,6 +53,15 @@ const checkConsistentPadding = (arr: string[], paddedLengths: number[]): number 
     return width;
 }
 
+/**
+ * Main function.
+ *
+ * Decision Order:
+ *   1. Empty input → 0
+ *   2. No padding observed → 1 or -minLength
+ *   3. Conflicting padded widths → -1
+ *   4. Confirm consistent padding → width
+ */
 export function checkNumberPadding(intStrs: Iterable<string>): number {
     const arr = Array.from(intStrs);
 
